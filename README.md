@@ -6,7 +6,7 @@ See also in :
 # Sommaire
 
 [Git](#git)
- - [Modèle de branchage](#modele-de-branchage)
+ - [Modèle de branchage](#modèle-de-branchage)
    - [Branches de fonctionnalités](#branches-de-fonctionnalités)
    - [Sortie de nouvelles versions](#sortie-de-nouvelles-versions)
    - [Hotfix](#hotfix)
@@ -72,7 +72,7 @@ git push origin :feature/<my-feature>
 Notes : Bien évidemment, il est possible de commit sur
 `main`, mais il faut l'éviter le plus possible.
 
-### Sortie de nouvelles version
+### Sortie de nouvelles versions
 
 Les branches de sortie servent à préparer la sortie de la
 nouvelle version du logiciel.
@@ -193,7 +193,7 @@ Le texte du body doit faire moins de 72 caractères horizontallement. Le body do
 
 Le footer contient le numéro de l'issue traité (`Resolve: #123`), et/ou le hash du commit lors d'un `revert` (`Revert: 9efc5d`). Il contient aussi le nom des personnes ayant vérifié une pull request (`Reviewed-by: Someone`).
 
-### Examples
+### Exemples
 
 ```
 fix: Prevent racing of requests
