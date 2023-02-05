@@ -173,7 +173,7 @@ Il y a 5 types différents :
 
 ### Description 
 
-Une bonne description commence par une majuscule, et ne se termine pas par un point. Elle doit être écrite en Anglais et doit être formulé à l'impératif. Elle doit faire mod de 50 lettres pour une visibilité optimale. Enfin, elle doit répondre à la question suivante : *Ce commit va..*
+Une bonne description commence par une majuscule, et ne se termine pas par un point. Elle doit être écrite en Anglais et doit être formulé à l'impératif. Elle doit faire moins de 50 lettres pour une visibilité optimale. Enfin, elle doit répondre à la question suivante : *Ce commit va..*
 
 Voici quelques verbes-clés qui peuvent aider :
  - Add
