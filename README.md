@@ -30,7 +30,7 @@ See also in :
 
 ## Modèle de branchage
 
-Nous utilisons [OneFlow]() comme stratégie Git.
+Nous utilisons [OneFlow](https://www.endoflineblog.com/oneflow-a-git-branching-model-and-workflow) comme stratégie Git.
 OneFlow est basé sur GitFlow mais n'utilise qu'une seule
 branche à longue durée de vie (ici `main`).
 
