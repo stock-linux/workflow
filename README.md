@@ -20,7 +20,8 @@ See also in :
  - [Versionnage](#versionnage)
    - [MAJOR](#major)
    - [MINOR](#minor) 
-   - [PATCH](#patch) 
+   - [PATCH](#patch)
+
 [Modèles](#modèles)
  - [Modèle des issues](#modèle-des-issues) 
 
