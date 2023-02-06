@@ -240,7 +240,7 @@ Ce numéro est incrémenté à chaque hotfix fusioné dans `main`.
   - [ ] support request => Please do not submit support request here, see note at the top of this template.
 
 
-* **Do you want to request a *feature* or report a *bug*?**
+* **What do you want to request or report?**
 
 
 
@@ -248,8 +248,7 @@ Ce numéro est incrémenté à chaque hotfix fusioné dans `main`.
 
 
 
-* **If the current behavior is a bug, please provide the steps to reproduce and if possible a minimal demo of the problem** via
-https://plnkr.co or similar (you can use this template as a starting point: http://plnkr.co/edit/tpl:AvJOMERrnz94ekVua0u5).
+* **If the current behavior is a bug, please provide the steps to reproduce.**
 
 
 
@@ -275,7 +274,7 @@ https://plnkr.co or similar (you can use this template as a starting point: http
 ```
 **Please check if the PR fulfills these requirements**
 - [ ] A similar PR is not already submitted
-- [ ] The commit message(s) follows our guidelines
+- [ ] Commit message(s) and branch name follows our guidelines
 - [ ] Tests for the changes have been added (for bug fixes / features)
 - [ ] Docs have been added / updated (for bug fixes / features)
 
@@ -291,6 +290,6 @@ https://plnkr.co or similar (you can use this template as a starting point: http
 **What is the new behavior (if this is a feature change)?**
 
 
-**Other information**:
+**Other information** (e.g. system tested on, etc)
 
 ```
