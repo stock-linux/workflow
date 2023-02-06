@@ -190,7 +190,7 @@ Voici quelques verbes-clés qui peuvent aider :
 
 ### Body 
 
-Le texte du body doit faire moins de 72 caractères horizontallement. Le body doit le quoi, le pourquoi et le comment.
+Le texte du body doit faire moins de 72 caractères horizontallement. Le body doit expliquer le quoi, le pourquoi et le comment de ce commit.
 
 ### Footer 
 
