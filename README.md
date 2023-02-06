@@ -65,7 +65,7 @@ git branch -d feature/<my-feature>
 ```
 
 Visuellement :
-![](https://www.endoflineblog.com/oneflow-a-git-branching-model-and-workflow#feature-branches)
+![](img/feature-branch-rebase-and-merge-final.png)
 
 Si la branche à été poussé vers le dépot :
 ```
@@ -102,7 +102,7 @@ git push --tags
 git branch -d release/<version-number>
 ```
 Visuellement :
-![](https://www.endoflineblog.com/oneflow-a-git-branching-model-and-workflow#feature-branches)
+![](img/release-branch-merge-final.png)
 
 Si la branche a été poussé vers le repo :
 ```
@@ -137,7 +137,7 @@ git branch -d hotfix/<version-number>
 ```
 
 Visuellement :
-![](https://www.endoflineblog.com/oneflow-a-git-branching-model-and-workflow#feature-branches) 
+![](img/hotfix-branch-merge-final.png) 
 
 Si la branche à été poussé sur le dépot :
 ```
