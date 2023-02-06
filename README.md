@@ -23,8 +23,8 @@ See also in :
     - [PATCH](#patch)
 
 - [MODÈLES](#modèles)
- - [Modèle des issues](#modèle-des-issues)
- - [Modèle des pull requests](#modèle-des-pull-requests) 
+  - [Modèle des issues](#modèle-des-issues)
+  - [Modèle des pull requests](#modèle-des-pull-requests) 
 
 
 # Git
