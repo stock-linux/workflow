@@ -1,98 +1,91 @@
 # Workflow
 
 See also in : 
- - [English]()
+ - [French](README-fr.md)
 
-# Sommaire
+# Table of contents 
 
 - [GIT](#git)
-  - [Modèle de branchage](#modèle-de-branchage)
-    - [Branches de fonctionnalités](#branches-de-fonctionnalités)
-    - [Sortie de nouvelles versions](#sortie-de-nouvelles-versions)
-    - [Hotfix](#hotfix)
-  - [Nommage des commits](#nommage-des-commits)
-    - [Syntaxe](#syntaxe)
+  - [Branching strategy](#branching-strategy)
+    - [Feature branches](#feature-branches)
+    - [Release branches](#release-branches)
+    - [Hotfix branches](#hotfix)
+  - [Commit messages](#commit-messages)
+    - [Structure](#structure)
     - [Type](#type)
     - [Description](#description)
     - [Body](#body)
     - [Footer](#footer)
-    - [Exemples](#exemples)
-  - [Versionnage](#versionnage)
+    - [Examples](#examples)
+  - [Versionning](#versionning)
     - [MAJOR](#major)
     - [MINOR](#minor) 
     - [PATCH](#patch)
 
-- [MODÈLES](#modèles)
-  - [Modèle des issues](#modèle-des-issues)
-  - [Modèle des pull requests](#modèle-des-pull-requests) 
+- [TEMPLATES](#templates)
+  - [Issues template](#issues-template)
+  - [Pull requests template](#pull-requests-template)
 
 
 # Git
 
-## Modèle de branchage
+## Branching strategy
 
-Nous utilisons [OneFlow](https://www.endoflineblog.com/oneflow-a-git-branching-model-and-workflow) comme stratégie Git.
-OneFlow est basé sur GitFlow mais n'utilise qu'une seule
-branche à longue durée de vie (ici `main`).
+We are using [OneFlow](https://www.endoflineblog.com/oneflow-a-git-branching-model-and-workflow) as Git strategy.
+OneFlow is based on GitFlow, but uses only one eternal branch (here `main`).
 
-### Branches de fonctionnalités
+### Feature branches
 
-Toute nouvelle fonctionnalité doit être développé sur 
-une branche à part, nommé `feature/<my-feature>`. Il n'est 
-pas obligatoire de pousser la branche de travail sur le 
-dépot, mais il possible de le faire pour éviter de perdre son
-travail ou encore lors de travaux longs.
+Working on a new feature needs to be done on an other branch, named `feature/<my-feature>`.
+Feature branches only exist in the local repository.
+If there are multiple people working on it, or to be sure to not loose
+some work, the branch can be pulled on the remote repository.
 
-Les branches de travail sont crées de cette manière :
+Feature branches are created like this:
 ```
 git checkout -b feature/<my-feature> main
 ```
 
-Pousser la branche vers le dépot :
+Push the branch on the remote one if needed:
 ```
 git push -u origin feature/<my-feature>
 ```
-
-Lorsque la fonctionnalité à implémenter est fonctionelle,
-on l'implémente dans `main` de cette façon :
+Once work on the feature is done, and when the feature is stable, it 
+needs to be integrated in `main` like this:
 ```
 git checkout feature/<my-feature>
-git rebase -i main                               # Permet d'effectuer des modifications aux commits
+git rebase -i main
 git checkout main
 git merge --no-ff feature/<my-feature>
 git push
 git branch -d feature/<my-feature>
 ```
 
-Visuellement :
+Visually:
 ![](img/feature-branch-rebase-and-merge-final.png)
-
-Si la branche à été poussé vers le dépot :
+If the branch was pushed to the remote:
 ```
 git push origin :feature/<my-feature>
 ```
 
-Notes : Bien évidemment, il est possible de commit sur
-`main`, mais il faut l'éviter le plus possible.
+Notes: Of course we can commit on `main`, but you must avoid doing it. 
 
-### Sortie de nouvelles versions
+### Feature branches
 
-Les branches de sortie servent à préparer la sortie de la
-nouvelle version du logiciel.
+Release branches are created to prepare the software for being released.
 
-Note sur le numéro de version : Nous utilisons le "schemantic versionning", voir "[versionnage](#versionnage)".
+Note on the release number: we are using schemantic versionning, see
+[versionning](). 
 
-Démarrage de la branche :
+Starting the branch:
 ```
 git checkout -b release/<version-number> <commit-hash>
 ```
+Notes: release branches don't necessarily start from the actual state 
+of `main`, hence the presence of `<commit-hash>`.
 
-Notes : Les branches de sortie ne démarrent pas forcément
-depuis l'état actuel de `main`, d'où la présence de
-`<commit-hash>`.
-
-Quand la sortie de la nouvelle version est possible, on 
-ajoute la nouvelle version par dessus main :
+When the new version can be released, the branch can be added on the
+top of `main`:
 ```
 git checkout release/<release-number>
 git tag <version-number>
@@ -101,32 +94,32 @@ git merge release/<version-number>
 git push --tags
 git branch -d release/<version-number>
 ```
-Visuellement :
+Visually:
 ![](img/release-branch-merge-final.png)
 
-Si la branche a été poussé vers le repo :
+If the branch was pushed to the remote:
 ```
 git push origin :release/<version-number>
 ```
 
 ### Hotfix
 
-Les branches "hotfix" se comportent comme des branches 
-de fonctionnalité, malgrès que leur présence ne soit pas désiré. Elles permettent de résoudre des problèmes de 
-dernière minute.
+Hotfix branches are really similar to release branches and they only
+differ in their attentions: one is planed, and the other is not 
+planed but needed to fix some critical defect in the lastest
+release.
 
-Création de la branche :
+Starting the branch:
 ```
 git checkout -b hotfix/<version-number> <version-number-to-fix>
 ```
 
-Si on veut pousser la branche vers le dépot :
+If we want to push the branch:
 ```
 git push -u origin hotfix/<version-number>
 ```
 
-Une fois les correctifs appliqués, il est temps de pousser 
-la nouvelle version :
+Once all has been fixed, the branch can be pushed:
 ```
 git checkout hotfix/<version-number>
 git tag <version-number>
@@ -136,22 +129,21 @@ git push --tags
 git branch -d hotfix/<version-number>
 ```
 
-Visuellement :
+Visually:
 ![](img/hotfix-branch-merge-final.png) 
 
-Si la branche à été poussé sur le dépot :
+If the branch was pushed: 
 ```
 git push origin :hotfix/<version-number>
 ```
 
-## Nommage des commits
+## Commit messages
 
-Pour nommer les commits, nous nous sommes inspirés du 
-modèle [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
+To name commits, we were inspired by [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
-### Syntaxe
+### Syntax
 
-La systaxe est composé de 4 parties :
+The commit's is composed of 4 parts:
 ```
 <type>: <description>
 
@@ -162,23 +154,31 @@ La systaxe est composé de 4 parties :
 
 ### Type
 
-Il y a 5 types différents :
+There are 5 differents types of commits:
 
- 1. **feat** : Un commit de type `feat` introduit une nouvelle fonctionnalité dans le code.
+ 1. **feat**: A commit of the type `feat` introduces a new feature in 
+ the codebase.
 
- 2. **fix** : Un commit de type `fix` résoud un bug dans le code.
+ 2. **fix**: A commit of the type `fix` patches a bug in the codebase.
 
- 3. **style** : Un commit de type `style` change un élément lié au style dans le code.
+ 3. **style**: A commit of the type `style` changes an element 
+ related to the style in the codebase.
 
- 4. **docs** : Un commit de type `docs` ajoute/modifie un élément de la documentation.
+ 4. **docs**: A commit of the type `docs` adds/modifies an element of 
+ the documentation.
 
- 5. **revert** : Un commit de type `revert` annule un commit précédent.
+ 5. **revert**: A commit of the type `revert` reverts a previous
+ commit.
 
 ### Description 
 
-Une bonne description commence par une majuscule, et ne se termine pas par un point. Elle doit être écrite en Anglais et doit être formulé à l'impératif. Elle doit faire moins de 50 lettres pour une visibilité optimale. Enfin, elle doit répondre à la question suivante : *Ce commit va..*
+A good description begins with a capital letter, and doesn't end with
+a period. It needs to be written in English and uses the imperative
+mood. The subject line should be limited to 50 characters. If the 
+description is formulated correctly, it should be able to complete
+this sentence : *This commit will...* 
 
-Voici quelques verbes-clés qui peuvent aider :
+Some verbs examples:
  - Add
  - Remove
  - Create
@@ -190,13 +190,15 @@ Voici quelques verbes-clés qui peuvent aider :
 
 ### Body 
 
-Le texte du body doit faire moins de 72 caractères horizontallement. Le body doit expliquer le quoi, le pourquoi et le comment de ce commit.
+The body needs to be warped at 72 characters. It needs to explain
+what changed and why.
 
 ### Footer 
 
-Le footer contient le numéro de l'issue traité (`Resolve: #123`), et/ou le hash du commit lors d'un `revert` (`Revert: 9efc5d`). Il contient aussi le nom des personnes ayant vérifié une pull request (`Reviewed-by: Someone`).
+The footer contains the issue related (`Resolve: #123`), and/or the 
+hesh of the commit in a `revert` (`Revert: 9efc5d`). It also contains the name of the people how review a pull request (`Reviewed-by: Someone`).
 
-### Exemples
+### Examples
 
 ```
 fix: Prevent racing of requests
@@ -211,26 +213,25 @@ Reviewed-by: Z
 Resolve: #123
 ```
 
-## Versionnage
+## Versionning
 
-Pour le versionnage, nous nous sommes basés sur [Semantic Versionning](https://semver.org/).
+For the versionning, we are currently based on [Semantic Versionning](https://semver.org/).
 
 ### MAJOR
 
-Ce numéro n'est pas modifié automatiquement.
+This number is not changed manually.
 
 ### MINOR
 
-Ce numéro est incrémenté à chaque fusion de fonctionnalité dans `main`.
+This number is updated on each merge of a new feature into `main`.
 
 ### PATCH
 
-Ce numéro est incrémenté à chaque hotfix fusioné dans `main`.
+This number is updated on each merge of a hotfix into `main`.
 
+# Templates
 
-# Modèles
-
-## Modèle des issues
+## Issues template
 ```
 **Note: for support questions, please ask on the Discord**. This repository's issues are reserved for feature requests and bug reports.
 
@@ -270,7 +271,7 @@ Ce numéro est incrémenté à chaque hotfix fusioné dans `main`.
 
 ```
 
-## Modèle des pull requests
+## Pull requests template
 ```
 **Please check if the PR fulfills these requirements**
 - [ ] A similar PR is not already submitted
