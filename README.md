@@ -10,7 +10,7 @@ See also in :
     - [Feature branches](#feature-branches)
     - [Release branches](#release-branches)
     - [Hotfix branches](#hotfix)
-  - [Commits message](#commits-message)
+  - [Commit messages](#commit-messages)
     - [Structure](#structure)
     - [Type](#type)
     - [Description](#description)
@@ -32,21 +32,21 @@ See also in :
 ## Branching strategy
 
 We are using [OneFlow](https://www.endoflineblog.com/oneflow-a-git-branching-model-and-workflow) as Git strategy.
-OneFlow is based on GitFlow, but use only one eternal branch (here `main`).
+OneFlow is based on GitFlow, but uses only one eternal branch (here `main`).
 
 ### Feature branches
 
-Working on a new feature need to be done on an other branch, named `feature/<my-feature>`.
-Feature branches only exists in the local developer's repository.
-If there is multiple people working on it, or to be sure to not loose
-the work, the branch can be pulled on the remote repository.
+Working on a new feature needs to be done on an other branch, named `feature/<my-feature>`.
+Feature branches only exist in the local repository.
+If there are multiple people working on it, or to be sure to not loose
+some work, the branch can be pulled on the remote repository.
 
 Feature branches are created like this:
 ```
 git checkout -b feature/<my-feature> main
 ```
 
-Push the branch on the remote if needed:
+Push the branch on the remote one if needed:
 ```
 git push -u origin feature/<my-feature>
 ```
@@ -81,10 +81,10 @@ Starting the branch:
 ```
 git checkout -b release/<version-number> <commit-hash>
 ```
-Notes: release branches don't necessary start from the actual state 
+Notes: release branches don't necessarily start from the actual state 
 of `main`, hence the presence of `<commit-hash>`.
 
-When the new version can be released, the branch can be add on the
+When the new version can be released, the branch can be added on the
 top of `main`:
 ```
 git checkout release/<release-number>
@@ -104,9 +104,9 @@ git push origin :release/<version-number>
 
 ### Hotfix
 
-Hotfix branches are really similar as release branches and they only
+Hotfix branches are really similar to release branches and they only
 differ in their attentions: one is planed, and the other is not 
-planed but necessary to fix some critical defect in the lastest
+planed but needed to fix some critical defect in the lastest
 release.
 
 Starting the branch:
@@ -119,7 +119,7 @@ If we want to push the branch:
 git push -u origin hotfix/<version-number>
 ```
 
-Once all as been fixed, the branch can be push:
+Once all has been fixed, the branch can be pushed:
 ```
 git checkout hotfix/<version-number>
 git tag <version-number>
@@ -137,11 +137,11 @@ If the branch was pushed:
 git push origin :hotfix/<version-number>
 ```
 
-## Commits message
+## Commit messages
 
-For namming commits, we where inspired by [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
+To name commits, we were inspired by [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
-### Syntaxe
+### Syntax
 
 The commit's is composed of 4 parts:
 ```
@@ -155,26 +155,25 @@ The commit's is composed of 4 parts:
 ### Type
 
 There are 5 differents types of commits:
-Il y a 5 types différents :
 
- 1. **feat**: A commit of the type `feat` introduce a new feature in 
+ 1. **feat**: A commit of the type `feat` introduces a new feature in 
  the codebase.
 
  2. **fix**: A commit of the type `fix` patches a bug in the codebase.
 
- 3. **style**: A commit of the type `style` change an element 
+ 3. **style**: A commit of the type `style` changes an element 
  related to the style in the codebase.
 
- 4. **docs**: A commit of the type `docs` add/modify an element of 
+ 4. **docs**: A commit of the type `docs` adds/modifies an element of 
  the documentation.
 
- 5. **revert**: A commit of the type `revert` revert a previous
+ 5. **revert**: A commit of the type `revert` reverts a previous
  commit.
 
 ### Description 
 
-A good description begin with a capital letter, and don't end with
-a period. It needs to be wrote in English and use the imperative
+A good description begins with a capital letter, and doesn't end with
+a period. It needs to be written in English and uses the imperative
 mood. The subject line should be limited to 50 characters. If the 
 description is formulated correctly, it should be able to complete
 this sentence : *This commit will...* 
@@ -197,8 +196,7 @@ what changed and why.
 ### Footer 
 
 The footer contains the issue related (`Resolve: #123`), and/or the 
-hesh of the commit in a `revert` (`Revert: 9efc5d`). It contains 
-also the name of the people how review a pull request (`Reviewed-by: Someone`).
+hesh of the commit in a `revert` (`Revert: 9efc5d`). It also contains the name of the people how review a pull request (`Reviewed-by: Someone`).
 
 ### Examples
 
@@ -217,19 +215,19 @@ Resolve: #123
 
 ## Versionning
 
-For the versionning, we where based on [Semantic Versionning](https://semver.org/).
+For the versionning, we are currently based on [Semantic Versionning](https://semver.org/).
 
 ### MAJOR
 
-This number is not changed.
+This number is not changed manually.
 
 ### MINOR
 
-This number is updated at each merge of a new feature into `main`.
+This number is updated on each merge of a new feature into `main`.
 
 ### PATCH
 
-This number is updated at each merge of a hotfix into `main`.
+This number is updated on each merge of a hotfix into `main`.
 
 # Templates
 
